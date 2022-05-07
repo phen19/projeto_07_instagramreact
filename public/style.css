@@ -11,6 +11,13 @@ body {
   font-size: 14px;
 }
 
+.curtido{
+  color: red;
+}
+
+ion-icon{
+  visibility: visible;
+}
 .navbar {
   width: 100%;
   display: flex;

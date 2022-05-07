@@ -1,4 +1,31 @@
+import React from "react";
+
 function Post(props){
+    const [cor, setCor] = React.useState(
+                                            <ion-icon
+                                            name="heart-outline"
+                                            onClick={() => check('heart-outline')}
+                                            ></ion-icon>
+                                        );
+      function check(elemento) {
+        elemento === 'heart-outline' ? setCor(
+                                        <ion-icon
+                                        class="curtido"
+                                        name="heart"
+                                        onClick={() => check('heart')}
+                                        ></ion-icon>
+                                        )
+
+                                    :   setCor(
+                                            <ion-icon
+                                            name="heart-outline"
+                                            onClick={() => check('heart-outline')}
+                                            ></ion-icon>
+                                        );
+      }
+     
+    //não foi possível acessar o props name direto na arrowfunction da linha 42, declarando uma variavel e atribuindo o valor foi a maneira mais fácil de se contornar  
+    const name = cor.props.name;
     return(
         <div class="post">
                         <div class="topo">
@@ -12,13 +39,13 @@ function Post(props){
                         </div>
 
                         <div class="conteudo">
-                        <img src={props.postImage} />
+                        <img src={props.postImage} onClick={() => check(name)}/>
                         </div>
 
                         <div class="fundo">
                         <div class="acoes">
                             <div>
-                            <ion-icon name="heart-outline"></ion-icon>
+                            {cor}
                             <ion-icon name="chatbubble-outline"></ion-icon>
                             <ion-icon name="paper-plane-outline"></ion-icon>
                             </div>
@@ -47,6 +74,7 @@ const post = [  {userImage : "img/meowed.svg", title: "meowed", postImage: "img/
 
 
 export default function Posts(){
+    
     return (
         <div class = "posts">
             {post.map(post=> <Post userImage={post.userImage} title={post.title} postImage = {post.postImage} likeImage = {post.likeImage} likes = {post.likes} totalLikes ={post.totalLikes}/>) }
