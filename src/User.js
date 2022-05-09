@@ -1,8 +1,8 @@
 function UserData(props){
     return(
-        <div class= "usuario">
+        <div className= "usuario">
                     <img src={props.image} />
-                    <div class="texto">
+                    <div className="texto">
                     <strong>{props.title}</strong>
                     {props.text}
                     </div>
